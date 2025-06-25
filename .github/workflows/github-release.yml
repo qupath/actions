@@ -1,0 +1,66 @@
+name: Make draft release
+
+on:
+  workflow_call:
+    inputs:
+      release-target:
+        description: The github ref to target for release
+        default: ${{ github.ref_name }}
+        required: true
+        type: string
+      release-title:
+        description: The title of the draft release
+        default: ${{ github.ref_name }}
+        required: true
+        type: string
+      java-version:
+        description: The java version used for setup-java
+        default: 21
+        required: true
+        type: number
+      java-distribution:
+        description: The JDK distribution
+        default: temurin
+        required: true
+        type: string
+      artifact-name:
+        description: The artifact name for upload
+        default: ${{ github.event.repository.name }}-jar
+        required: true
+        type: string
+      artifact-path:
+        description: The path to build artifacts after download
+        required: true
+        type: string
+        default: build/*.jar
+      gradle-args:
+        description: The command and arguments to run with gradle
+        type: string
+        default: build
+        required: true
+
+jobs:
+  build:
+    name: Run build
+    uses: ./.github/workflows/gradle.yml
+    with:
+      java-version: ${{ inputs.java-version}}
+      java-distribution: ${{ inputs.java-distribution}}
+      artifact-name: ${{ inputs.artifact-name}}
+      gradle-args: ${{ inputs.gradle-args}}
+
+  release:
+    needs: build
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create --draft ${{ inputs.release-target }} --title ${{ inputs.release-title }} ${{ inputs.artifact-path }}
