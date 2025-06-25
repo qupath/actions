@@ -60,6 +60,9 @@ jobs:
       - uses: qupath/actions/.github/workflows/github-release.yml@main
 ```
 
+This last action is a bit more complex as it requires downloading artifacts from the build action and globbing them...
+Therefore it may not work as expected at first.
+
 ## Versioning
 
 Currently it's probably best if we use main by default.
