@@ -10,8 +10,7 @@ The basic gradle CI can be used as follows:
 ```yaml
 jobs:
   build:
-    steps:
-      - uses: qupath/actions/.github/workflows/gradle.yml@main
+    uses: qupath/actions/.github/workflows/gradle.yml@main
 ```
 
 For more complex builds, you can change the input variables, e.g.
@@ -19,22 +18,20 @@ For more complex builds, you can change the input variables, e.g.
 ```yaml
 jobs:
   build:
-    steps:
-      - uses: qupath/actions/.github/workflows/gradle.yml@main
-        with:
-          java-version: 17
-          java-distribution: liberica
-          artifact-name: my-silly-artifact-name
-          gradle-args: shadowJar
+    uses: qupath/actions/.github/workflows/gradle.yml@main
+    with:
+      java-version: 17
+      java-distribution: liberica
+      artifact-name: my-silly-artifact-name
+      gradle-args: shadowJar
 ```
 
 Similarly, SciJava maven snapshots and releases can be made, respectively, using
 
 ```yaml
 jobs:
-  build:
-    steps:
-      - uses: qupath/actions/.github/workflows/scijava-maven.yml@main
+  snapshot:
+    uses: qupath/actions/.github/workflows/scijava-maven.yml@main
 ```
 
 and
@@ -42,10 +39,9 @@ and
 ```yaml
 jobs:
   build:
-    steps:
-      - uses: qupath/actions/.github/workflows/scijava-maven.yml@main
-        with: 
-          release: true
+    publish-release:
+    with: 
+      release: true
 ```
 
 Similar build arguments can be passed in here, although gradle arguments are "extra arguments" and don't replace the single `publish` command.
@@ -55,9 +51,8 @@ Github draft releases can be made with:
 
 ```yaml
 jobs:
-  build:
-    steps:
-      - uses: qupath/actions/.github/workflows/github-release.yml@main
+  github-release:
+    uses: qupath/actions/.github/workflows/github-release.yml@main
 ```
 
 This last action is a bit more complex as it requires downloading artifacts from the build action and globbing them...
