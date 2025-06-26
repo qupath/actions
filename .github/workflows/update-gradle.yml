@@ -45,15 +45,17 @@ jobs:
         #   - qupath-extension-wsinfer
         #   - qupath-extension-scripting
     steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: alanocallaghan/${{ matrix.value }}
-          token: ${{ secrets.BADGES_ACCESS_TOKEN }}
+      - name: Checkout repo
+        run: |
+          git clone https://${{ secrets.BADGES_ACCESS_TOKEN }}@github.com/alanocallaghan/${{ matrix.value }}.git
+          cd ${{matrix.value}}
       - name: Update gradlew
         run: |
+          ls -lah
           ./gradlew wrapper --gradle-version ${{ inputs.gradle-version }}
       - name: Commit and push
         run: |
+          ls -lah
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
