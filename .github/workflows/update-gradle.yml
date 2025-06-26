@@ -1,3 +1,5 @@
+name: Update gradle versions
+
 on:
   workflow_dispatch:
     inputs:
