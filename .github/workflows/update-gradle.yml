@@ -48,7 +48,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: alanocallaghan/${{ matrix.value }}
-      - name: Update gradlw
+          token: ${{ secrets.BADGES_ACCESS_TOKEN }}
+      - name: Update gradlew
         run: |
           ./gradlew wrapper --gradle-version ${{ inputs.gradle-version }}
       - name: Commit and push
