@@ -6,38 +6,38 @@ on:
       release-target:
         description: The github ref to target for release
         default: ${{ github.ref_name }}
-        required: true
+        required: false
         type: string
       release-title:
         description: The title of the draft release
         default: ${{ github.ref_name }}
-        required: true
+        required: false
         type: string
       java-version:
         description: The java version used for setup-java
         default: 21
-        required: true
+        required: false
         type: number
       java-distribution:
         description: The JDK distribution
         default: temurin
-        required: true
+        required: false
         type: string
       artifact-name:
         description: The artifact name for upload
         default: ${{ github.event.repository.name }}-jar
-        required: true
+        required: false
         type: string
       artifact-path:
         description: The path to build artifacts after download
-        required: true
+        required: false
         type: string
         default: build/*.jar
       gradle-args:
         description: The command and arguments to run with gradle
         type: string
         default: build
-        required: true
+        required: false
 
 jobs:
   build:
