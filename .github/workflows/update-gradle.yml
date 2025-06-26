@@ -17,37 +17,38 @@ jobs:
         shell: bash
     strategy:
       matrix:
-        value:
+        repository:
+          - c-blosc-jars
           - extension-manager
+          - javadoc-viewer
           - log-viewer
-        #   - openslide-jars
-        #   - c-blosc-jars
-        #   - script-editor
-        #   - javadoc-viewer
-        #   - qupath
-        #   - qupath-fxtras
-        #   - qupath-gradle-scripting-project
-        #   - qupath-gradle-plugin
-        #   - qupath-bioimageio-spec
-        #   - qupath-extension-appose
-        #   - qupath-extension-align
-        #   - qupath-extension-djl
-        #   - qupath-extension-instanseg
-        #   - qupath-extension-jpen
-        #   - qupath-extension-liverquant
-        #   - qupath-extension-omero
-        #   - qupath-extension-py4j
-        #   - qupath-extension-stitching
-        #   - qupath-extension-snapshots
-        #   - qupath-extension-stardist
-        #   - qupath-extension-template
-        #   - qupath-extension-training
-        #   - qupath-extension-wsinfer
-        #   - qupath-extension-scripting
+          - openslide-jars
+          - script-editor
+          - qupath
+          - qupath-fxtras
+          - qupath-gradle-scripting-project
+          - qupath-gradle-plugin
+          - qupath-bioimageio-spec
+          - qupath-extension-appose
+          - qupath-extension-align
+          - qupath-extension-djl
+          - qupath-extension-instanseg
+          - qupath-extension-jpen
+          - qupath-extension-liverquant
+          - qupath-extension-omero
+          - qupath-extension-py4j
+          - qupath-extension-stitching
+          - qupath-extension-snapshots
+          - qupath-extension-stardist
+          - qupath-extension-template
+          - qupath-extension-training
+          - qupath-extension-wsinfer
+          - qupath-extension-scripting
     steps:
-      - name: Checkout repo
-        run: |
-          git clone https://${{ secrets.BADGES_ACCESS_TOKEN }}@github.com/alanocallaghan/${{ matrix.value }}.git .
+      - uses: actions/checkout@v4
+        with:
+         token: ${{ secrets.BADGES_ACCESS_TOKEN }}
+         repository: qupath/${{ matrix.repository }}
       - name: Update gradlew
         run: |
           ./gradlew wrapper --gradle-version ${{ inputs.gradle-version }}
