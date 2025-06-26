@@ -1,0 +1,50 @@
+on:
+  workflow_dispatch:
+    inputs:
+      gradle-version:
+        description: Gradle version
+        default: latest
+        type: string
+        required: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    strategy:
+      matrix:
+        value:
+          - extension-manager
+          - log-viewer
+          - openslide-jars
+          - c-blosc-jars
+          - script-editor
+          - javadoc-viewer
+          - qupath
+          - qupath-fxtras
+          - qupath-gradle-scripting-project
+          - qupath-gradle-plugin
+          - qupath-bioimageio-spec
+          - qupath-extension-appose
+          - qupath-extension-align
+          - qupath-extension-djl
+          - qupath-extension-instanseg
+          - qupath-extension-jpen
+          - qupath-extension-liverquant
+          - qupath-extension-omero
+          - qupath-extension-py4j
+          - qupath-extension-scripting
+          - qupath-extension-stitching
+          - qupath-extension-snapshots
+          - qupath-extension-stardist
+          - qupath-extension-template
+          - qupath-extension-training
+          - qupath-extension-wsinfer
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: qupath/${{ matrix.value }}
+      - run: |
+          ./gradlew wrapper --gradle-version ${{ inputs.gradle-version }}
