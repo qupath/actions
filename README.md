@@ -65,6 +65,6 @@ Once stable, we should consider tagging this repository to improve reproducibili
 
 ## Updating repositories
 
-Currently, repos will need to be updated manually.
-Although this repo will reduce duplication a bit, it may still be a bit painful as our repositories grow in number.
-Therefore we should consider adding actions here that can update gradle and action versions across our repositories.
+You can bump the gradle version for all listed repos by going to Actions -> Update gradle versions -> Run workflow -> Run workflow.
+You can specify the version if needed, although usually it will be better to use the default.
+In future it may be possible to only update some repos, but this is not implemented yet.
