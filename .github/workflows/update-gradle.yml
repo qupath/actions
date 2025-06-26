@@ -48,7 +48,7 @@ jobs:
       - name: Checkout repo
         run: |
           git clone https://${{ secrets.BADGES_ACCESS_TOKEN }}@github.com/alanocallaghan/${{ matrix.value }}.git
-          cd ${{matrix.value}}
+          cd ${{matrix.value}} .
       - name: Update gradlew
         run: |
           ls -lah
