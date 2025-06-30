@@ -13,12 +13,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update local files
-        run: ./count_qupath_downloads.sh > "download-stats/$(date -I | sed -e 's/ /-/g').txt"
+      - name: Check download stats
+        run: |
+          mkdir -p download-stats
+          ./count_qupath_downloads.sh > "download-stats/$(date -I | sed -e 's/ /-/g').txt"
 
       - name: Commit files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -am "Add download stats"
+          git add .
+          git commit --allow-empty -am "Add download stats"
           git push
