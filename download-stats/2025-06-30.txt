@@ -1,5 +1,0 @@
-QuPath downloads for Mac (full release only): 
-QuPath downloads for Win (full release only): 
-QuPath downloads for Linux (full release only): 
-Total QuPath downloads: 
-Total QuPath downloads (including pre-release): 
