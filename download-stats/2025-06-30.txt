@@ -1,5 +1,0 @@
-QuPath downloads for Mac (full release only): 192020
-QuPath downloads for Win (full release only): 411775
-QuPath downloads for Linux (full release only): 40804
-Total QuPath downloads:  644599
-Total QuPath downloads (including pre-release):  698350
