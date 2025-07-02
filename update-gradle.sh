@@ -43,9 +43,9 @@ for REPO in ${REPOS[@]}; do
       popd
     else
       echo "$REPO doesn't exist, cloning"
-      # git clone git@github.com:qupath/$REPO.git
+      git clone git@github.com:qupath/$REPO.git
     fi
-    # gh workflow run update-gradle.yml
+    gh workflow run update-gradle.yml
 done
 
 popd
