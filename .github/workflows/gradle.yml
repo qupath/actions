@@ -7,7 +7,7 @@ on:
         description: The java version used for setup-java
         default: 21
         required: false
-        type: number
+        type: string
       java-distribution:
         description: The JDK distribution
         default: temurin
