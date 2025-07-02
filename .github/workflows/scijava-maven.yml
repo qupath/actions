@@ -13,11 +13,6 @@ on:
         default: temurin
         required: false
         type: string
-      artifact-name:
-        description: The artifact name for upload
-        default: ${{ github.event.repository.name }}-jar
-        required: false
-        type: string
       gradle-args:
         description: Extra arguments to use with gradle
         type: string
