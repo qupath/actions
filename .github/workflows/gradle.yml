@@ -15,8 +15,13 @@ on:
         type: string
       artifact-name:
         description: The artifact name for upload
-        default: ${{ github.event.repository.name }}-jar
+        default: ${{ github.event.repository.name }}
         required: false
+        type: string
+      artifact-path:
+        description: Where to find the artifacts for upload
+        required: false
+        default: build/libs/*.jar
         type: string
       gradle-args:
         description: The command and arguments to run with gradle
@@ -48,5 +53,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.artifact-name }}
-          path: build/libs
+          path: ${{ inputs.artifact-path }}
           retention-days: 7
