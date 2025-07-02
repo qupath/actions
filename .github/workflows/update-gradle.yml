@@ -48,9 +48,9 @@ jobs:
           # - qupath-extension-scripting
     steps:
       - uses: actions/checkout@v4
-        # with:
+        with:
+         repository: qupath/${{ matrix.repository }}
         #  token: ${{ secrets.BADGES_ACCESS_TOKEN }}
-        #  repository: qupath/${{ matrix.repository }}
       - run: gh workflow list
       # - name: Run workflow
       #   run: |
