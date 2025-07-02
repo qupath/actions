@@ -51,7 +51,6 @@ jobs:
         with:
          repository: alanocallaghan/${{ matrix.repository }}
         #  token: ${{ secrets.BADGES_ACCESS_TOKEN }}
-      - run: gh workflow list
-      # - name: Run workflow
-      #   run: |
-      #     gh workflow run update-gradle.yml
+      - name: Run workflow
+        run: |
+          gh workflow run update-gradle.yml
