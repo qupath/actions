@@ -50,7 +50,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
          repository: alanocallaghan/${{ matrix.repository }}
-        #  token: ${{ secrets.BADGES_ACCESS_TOKEN }}
+         token: ${{ secrets.BADGES_ACCESS_TOKEN }}
       - name: Run workflow
         run: |
           gh workflow run update-gradle.yml
