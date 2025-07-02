@@ -38,14 +38,13 @@ pushd $DIR
 for REPO in ${REPOS[@]}; do
     if [ -d "$REPO" ]; then
       echo "$REPO already exists"
-      pushd "$REPO"
-      git remote show "${1:-origin}" | sed -n '/HEAD branch/s/.*: //p' | xargs git checkout
-      popd
     else
       echo "$REPO doesn't exist, cloning"
       git clone git@github.com:qupath/$REPO.git
     fi
+    pushd "$REPO"
     gh workflow run update-gradle.yml
+    popd
 done
 
 popd
