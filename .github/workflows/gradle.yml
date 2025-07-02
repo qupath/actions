@@ -8,6 +8,11 @@ on:
         default: ./gradlew
         required: false
         type: string
+      platform:
+        description: The platform to run on
+        default: ubuntu-latest
+        required: false
+        type: string
       java-version:
         description: The java version used for setup-java
         default: "21"
@@ -39,7 +44,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.platform }}
     steps:
       - uses: actions/checkout@v4
 
