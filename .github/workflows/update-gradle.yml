@@ -51,6 +51,7 @@ jobs:
         # with:
         #  token: ${{ secrets.BADGES_ACCESS_TOKEN }}
         #  repository: qupath/${{ matrix.repository }}
+      - run: gh workflow list
       - name: Run workflow
         run: |
           gh workflow run update-gradle.yml
