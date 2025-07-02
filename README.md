@@ -38,8 +38,8 @@ and
 
 ```yaml
 jobs:
-  build:
-    publish-release:
+  release:
+    uses: qupath/actions/.github/workflows/scijava-maven.yml@main
     with: 
       release: true
 ```
