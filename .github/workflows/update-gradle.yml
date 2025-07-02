@@ -49,9 +49,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-         repository: qupath/${{ matrix.repository }}
-        #  token: ${{ secrets.BADGES_ACCESS_TOKEN }}
-      - run: gh workflow list
-      # - name: Run workflow
-      #   run: |
-      #     gh workflow run update-gradle.yml
+         repository: alanocallaghan/${{ matrix.repository }}
+         token: ${{ secrets.BADGES_ACCESS_TOKEN }}
+      - name: Run workflow
+        run: |
+          gh workflow run update-gradle.yml
