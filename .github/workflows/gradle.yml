@@ -10,7 +10,7 @@ on:
         type: string
       java-version:
         description: The java version used for setup-java
-        default: 21
+        default: "21"
         required: false
         type: string
       java-distribution:
