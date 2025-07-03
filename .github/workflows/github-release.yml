@@ -60,12 +60,9 @@ jobs:
 
       - uses: actions/download-artifact@v4
         with:
-          merge-multiple: true
-      - run: ls -lah
-      - name: Unzip artifact
-        run: unzip ${{ inputs.artifact-name }}
+          name: ${{ inputs.artifact-name }}
 
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create --draft ${{ inputs.release-target }} --title ${{ inputs.release-title }} ${{ inputs.artifact-path }}
+        run: gh release create --draft ${{ inputs.release-target }} --title ${{ inputs.release-title }} ${{ inputs.artifact-name }}/${{ inputs.artifact-path }}
