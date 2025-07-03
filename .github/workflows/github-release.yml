@@ -65,4 +65,4 @@ jobs:
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create --draft ${{ inputs.release-target }} --title ${{ inputs.release-title }} ${{ inputs.artifact-name }}/${{ inputs.artifact-path }}
+        run: gh release create --draft ${{ inputs.release-target }} --title ${{ inputs.release-title }} ${{ inputs.artifact-path }}
