@@ -33,6 +33,11 @@ on:
         required: false
         type: string
         default: "*.jar"
+      build-path:
+        description: The path to build artifacts in the gradle build
+        required: false
+        type: string
+        default: "build/libs/*.jar"
       gradle-args:
         description: The command and arguments to run with gradle
         type: string
@@ -47,6 +52,7 @@ jobs:
       java-version: ${{ inputs.java-version}}
       java-distribution: ${{ inputs.java-distribution}}
       artifact-name: ${{ inputs.artifact-name}}
+      artifact-path: ${{ inputs.build-path }}
       gradle-args: ${{ inputs.gradle-args}}
 
   release:
