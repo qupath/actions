@@ -71,7 +71,7 @@ jobs:
           ref: gh-pages
       - name: Update stable symlink
         run: |
-          rm stable
+          rm -f stable
           ln -s ${{ github.ref_name }} stable
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
