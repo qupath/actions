@@ -65,3 +65,14 @@ jobs:
           name: ${{ inputs.artifact-name }}
           path: ${{ inputs.artifact-path }}
           retention-days: 7
+
+      - name: Upload tests
+        uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: JUnit-results
+          if-no-files-found: warn
+          retention-days: 7
+          path: |
+            **/build/test-results/**/*.xml
+            **/build/reports/tests/*
